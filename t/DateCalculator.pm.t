@@ -101,7 +101,37 @@ sub main {
             
             done_testing();
         };
-        
+
+        subtest "same date but different timezones" => sub {
+
+            my $date1 = DateTime->new(
+                year        => "2018",
+                month       => "07",
+                day         => "11",
+                time_zone    => "Australia/Sydney"
+            );
+
+            my $date2 = DateTime->new(
+                year        => "2018",
+                month       => "07",
+                day         => "11",
+                time_zone    => "America/Chicago"
+            );
+
+            # There should be two working days as the above dates are two 
+            # different dates.
+            my $expect = 2;
+
+            my $actual = DateCalculator::getAbsoluteWorkdays({
+                date1 => $date1, 
+                date2 => $date2
+            });
+
+            eq_or_diff($actual, $expect, "Test same date but in different timezones.");
+
+            done_testing();
+        };
+
         subtest "Test two dates" => sub {
             my $date1 = DateTime->new(
                 year        => "2018",

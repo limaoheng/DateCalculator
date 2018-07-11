@@ -101,6 +101,10 @@ sub getAbsoluteWorkdays {
         confess "Input validation failed: " . Params::Check::last_error() . ", stopped";
     }
 
+    # Convert Timezone first.
+    $dt1->set_time_zone('Australia/Adelaide');
+    $dt2->set_time_zone('Australia/Adelaide');
+
     my $calendar = Date::Calendar->new($Profiles->{'AU'});
     return abs $calendar->delta_workdays(
         $dt1->year, $dt1->month, $dt1->day,

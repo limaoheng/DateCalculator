@@ -25,7 +25,7 @@ https://en.wikipedia.org/wiki/List_of_tz_database_time_zones.
 ### --valid-timezone   
 Optional. Show all valid timezones.
 
-###--unit   
+### --unit   
 Optional. This will convert the duration between two dates into desired
 result. Valid units are:
 'year'
